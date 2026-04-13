@@ -1,0 +1,48 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: VIRTUALEXPO
+        - paragraph [ref=e6]: Навигационный коридор виртуальных выставок
+      - generic [ref=e7]: Выберите выставку на стене и откройте ее 3D-зал
+    - complementary [ref=e8]:
+      - generic [ref=e9]: Точка входа
+      - heading "Коридор выставок" [level=1] [ref=e10]
+      - heading "Возрождение архаизма" [level=2] [ref=e11]
+      - paragraph [ref=e12]: Архаические ритмы, переведенные в цифровую экспозицию
+      - paragraph [ref=e13]: Выставка исследует, как мотивы древних культур читаются в современной живописи, пластике и цифровых инсталляциях.
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]: Куратор
+          - strong [ref=e17]: Иван Петров
+        - generic [ref=e18]:
+          - generic [ref=e19]: Период
+          - strong [ref=e20]: 15 янв - 30 мар 2025
+        - generic [ref=e21]:
+          - generic [ref=e22]: Каталог
+          - strong [ref=e23]: 48 работ
+      - generic [ref=e24]:
+        - generic [ref=e25]: Настенные полотна
+        - generic [ref=e26]: Скульптуры
+        - generic [ref=e27]: Аудиогид
+      - button "Идти вперед" [ref=e28] [cursor=pointer]
+    - navigation "Список выставок" [ref=e29]:
+      - button "01 Возрождение архаизма" [ref=e30] [cursor=pointer]
+      - button "02 Цифровая революция" [ref=e31] [cursor=pointer]
+      - button "03 Природа и форма" [ref=e32] [cursor=pointer]
+      - button "04 Свет и тень" [ref=e33] [cursor=pointer]
+      - button "05 Город будущего" [ref=e34] [cursor=pointer]
+    - generic:
+      - generic:
+        - paragraph: Колесо мыши / свайп
+        - img
+      - generic: Прогресс
+  - generic [ref=e36]:
+    - generic [ref=e37]: VirtualExpo
+    - heading "Вход в виртуальную галерею" [level=2] [ref=e38]
+    - paragraph [ref=e39]: Здесь пользователь сначала выбирает выставку прямо на картинах в коридоре, а затем переходит в отдельный 3D-зал, где можно изучать изображения, скульптуры и медиаданные каждого объекта.
+    - list [ref=e40]:
+      - listitem [ref=e41]: Колесо мыши или свайп двигают вас по коридору.
+      - listitem [ref=e42]: Наведение подсвечивает выбранную выставку.
+      - listitem [ref=e43]: Клик открывает карточку и ведет в зал.
+    - button "Войти в коридор" [ref=e44] [cursor=pointer]

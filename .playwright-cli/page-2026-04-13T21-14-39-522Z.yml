@@ -1,0 +1,79 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: VIRTUALEXPO
+        - link "← Вернуться в коридор выставок" [ref=e6] [cursor=pointer]:
+          - /url: index.html
+      - paragraph [ref=e7]: Передвигайтесь по залу, выбирайте объекты курсором и изучайте связанные медиа.
+    - complementary [ref=e8]:
+      - generic [ref=e9]: Выставочный зал
+      - heading "Природа и форма" [level=1] [ref=e10]
+      - heading "Биоморфные объекты и изображения на стыке искусства и экологии" [level=2] [ref=e11]
+      - paragraph [ref=e12]: Выставка соединяет органические структуры, природные циклы и пластические эксперименты в одном виртуальном пространстве.
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - generic [ref=e15]: Куратор
+          - strong [ref=e16]: Александр Морозов
+        - generic [ref=e17]:
+          - generic [ref=e18]: Период
+          - strong [ref=e19]: 10 фев - 20 май 2025
+        - generic [ref=e20]:
+          - generic [ref=e21]: Каталог
+          - strong [ref=e22]: 56 позиций каталога
+      - generic [ref=e23]:
+        - generic [ref=e24]: Биоморфные скульптуры
+        - generic [ref=e25]: Изображения
+        - generic [ref=e26]: Медиаданные
+      - paragraph [ref=e27]: "В зале 4 интерактивных объектов: есть изображения, 3D-формы и медиаданные."
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]: Выбранный объект
+          - heading "Гербарий движения" [level=3] [ref=e32]
+        - generic [ref=e33]: Изображение / медиа
+      - img "Гербарий движения" [ref=e35]
+      - generic [ref=e36]: Анна Рябова, 2024
+      - generic [ref=e37]: Фотография, цифровая печать
+      - paragraph [ref=e38]: Полевой материал собран в серию слоев, где лист становится картой ветра и роста.
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - generic [ref=e41]: Медианоситель
+          - generic [ref=e42]: Изображение JPG, 300 dpi
+        - generic [ref=e43]:
+          - generic [ref=e44]: Источник
+          - generic [ref=e45]: Серия полевых наблюдений
+        - generic [ref=e46]:
+          - generic [ref=e47]: Аудиогид
+          - generic [ref=e48]: 03:40, авторский текст
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - generic [ref=e52]: Навигация по объектам
+          - paragraph [ref=e53]: Можно двигаться по залу естественно или быстро перескакивать к объектам из списка.
+        - generic [ref=e54]:
+          - button "К текущему объекту" [ref=e55] [cursor=pointer]
+          - button "Следующий объект" [ref=e56] [cursor=pointer]
+      - generic [ref=e57]:
+        - button "Гербарий движения Анна Рябова · Изображение / медиа" [ref=e58] [cursor=pointer]:
+          - generic [ref=e59]: Гербарий движения
+          - generic [ref=e60]: Анна Рябова · Изображение / медиа
+        - button "Кокон света Павел Елагин · 3D-объект" [ref=e61] [cursor=pointer]:
+          - generic [ref=e62]: Кокон света
+          - generic [ref=e63]: Павел Елагин · 3D-объект
+        - button "Пульсация листа Светлана Гранкина · Изображение / медиа" [ref=e64] [cursor=pointer]:
+          - generic [ref=e65]: Пульсация листа
+          - generic [ref=e66]: Светлана Гранкина · Изображение / медиа
+        - button "Семена ветра Максим Пахомов · 3D-объект" [ref=e67] [cursor=pointer]:
+          - generic [ref=e68]: Семена ветра
+          - generic [ref=e69]: Максим Пахомов · 3D-объект
+    - generic [ref=e70]: Прогресс
+  - generic [ref=e73]:
+    - generic [ref=e74]: Внутри выставки
+    - heading "Природа и форма" [level=2] [ref=e75]
+    - paragraph [ref=e76]: Биоморфные объекты и изображения на стыке искусства и экологии
+    - list [ref=e77]:
+      - listitem [ref=e78]: Клик по объекту в 3D-зале открывает подробности справа.
+      - listitem [ref=e79]: Можно использовать список экспонатов внизу для быстрого перехода.
+      - listitem [ref=e80]: Для каждого объекта показаны связанные медиаданные и тип носителя.
+    - button "Открыть зал" [ref=e81] [cursor=pointer]

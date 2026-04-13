@@ -1,0 +1,66 @@
+- generic [ref=e1]:
+  - generic:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: VIRTUALEXPO
+        - paragraph [ref=e6]: Навигационный коридор виртуальных выставок
+      - generic [ref=e7]: Выберите выставку на стене и откройте ее 3D-зал
+    - complementary [ref=e8]:
+      - generic [ref=e9]: Точка входа
+      - heading "Коридор выставок" [level=1] [ref=e10]
+      - heading "Природа и форма" [level=2] [ref=e45]
+      - paragraph [ref=e12]: Биоморфные объекты и изображения на стыке искусства и экологии
+      - paragraph [ref=e13]: Выставка соединяет органические структуры, природные циклы и пластические эксперименты в одном виртуальном пространстве.
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]: Куратор
+          - strong [ref=e17]: Александр Морозов
+        - generic [ref=e18]:
+          - generic [ref=e19]: Период
+          - strong [ref=e20]: 10 фев - 20 май 2025
+        - generic [ref=e21]:
+          - generic [ref=e22]: Каталог
+          - strong [ref=e23]: 56 работ
+      - generic [ref=e24]:
+        - generic [ref=e49]: Биоморфные скульптуры
+        - generic [ref=e50]: Изображения
+        - generic [ref=e51]: Медиаданные
+      - button "Идти вперед" [ref=e28] [cursor=pointer]
+    - navigation "Список выставок" [ref=e29]:
+      - button "01 Возрождение архаизма" [ref=e30] [cursor=pointer]
+      - button "02 Цифровая революция" [ref=e31] [cursor=pointer]
+      - button "03 Природа и форма" [active] [ref=e32] [cursor=pointer]
+      - button "04 Свет и тень" [ref=e33] [cursor=pointer]
+      - button "05 Город будущего" [ref=e34] [cursor=pointer]
+    - generic:
+      - generic:
+        - paragraph: Колесо мыши / свайп
+        - img
+      - generic: Прогресс
+  - generic [ref=e53]:
+    - button "Закрыть" [ref=e54] [cursor=pointer]: ×
+    - generic [ref=e55]:
+      - img "Природа и форма" [ref=e57]
+      - generic [ref=e58]:
+        - generic [ref=e59]: 🌿
+        - heading "Природа и форма" [level=2] [ref=e60]
+        - paragraph [ref=e61]: Биоморфные объекты и изображения на стыке искусства и экологии
+        - paragraph [ref=e62]: Выставка соединяет органические структуры, природные циклы и пластические эксперименты в одном виртуальном пространстве.
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - generic [ref=e65]: Организация
+            - generic [ref=e66]: Биохудожественная галерея
+          - generic [ref=e67]:
+            - generic [ref=e68]: Куратор
+            - generic [ref=e69]: Александр Морозов
+          - generic [ref=e70]:
+            - generic [ref=e71]: Период
+            - generic [ref=e72]: 10 фев - 20 май 2025
+          - generic [ref=e73]:
+            - generic [ref=e74]: Наполнение зала
+            - generic [ref=e75]: 4 объектов в зале
+        - generic [ref=e76]:
+          - generic [ref=e77]: Биоморфные скульптуры
+          - generic [ref=e78]: Изображения
+          - generic [ref=e79]: Медиаданные
+        - button "Перейти к выставке" [ref=e80] [cursor=pointer]

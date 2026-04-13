@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VirtualExpo - Коридор выставок</title>
+    <link rel="icon" href="data:,">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<div class="ui-overlay">
+    <header class="topbar">
+        <div>
+            <div class="brand">VIRTUALEXPO</div>
+            <p class="brand-note">Навигационный коридор виртуальных выставок</p>
+        </div>
+        <div class="topbar-hint">Выберите выставку на стене и откройте ее 3D-зал</div>
+    </header>
+
+    <aside class="left-panel">
+        <div class="panel-kicker">Точка входа</div>
+        <h1>Коридор выставок</h1>
+        <h2 id="panel-title">Возрождение архаизма</h2>
+        <p id="panel-subtitle" class="panel-subtitle"></p>
+        <p id="panel-description"></p>
+
+        <div class="panel-stats">
+            <div class="stat-card">
+                <span class="stat-label">Куратор</span>
+                <strong id="panel-curator"></strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Период</span>
+                <strong id="panel-duration"></strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Каталог</span>
+                <strong id="panel-pieces"></strong>
+            </div>
+        </div>
+
+        <div id="panel-tags" class="tag-list"></div>
+
+        <button class="primary-button" onclick="scrollScene()">Идти вперед</button>
+    </aside>
+
+    <nav id="nav-menu" class="nav-card" aria-label="Список выставок"></nav>
+
+    <div class="right-panel">
+        <div class="scroll-indicator">
+            <p>Колесо мыши / свайп</p>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 5v14M19 18H5" />
+            </svg>
+        </div>
+
+        <div class="progress-widget">
+            <span>Прогресс</span>
+            <div class="progress-track">
+                <div id="gallery-progress-bar" class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="exhibition-modal" class="modal">
+    <div class="modal-card">
+        <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">×</button>
+
+        <div class="modal-grid">
+            <div class="modal-visual">
+                <img id="modal-cover" src="public/textures/art-1.jpg" alt="Обложка выставки">
+            </div>
+
+            <div class="modal-copy">
+                <div class="modal-emoji" id="modal-emoji">🎨</div>
+                <h2 id="modal-title">Выставка</h2>
+                <p id="modal-subtitle" class="modal-subtitle"></p>
+                <p id="modal-description">Описание выставки.</p>
+
+                <div class="modal-info">
+                    <div>
+                        <div class="modal-label">Организация</div>
+                        <div class="modal-value" id="modal-org">Museum</div>
+                    </div>
+                    <div>
+                        <div class="modal-label">Куратор</div>
+                        <div class="modal-value" id="modal-curator">Curator</div>
+                    </div>
+                    <div>
+                        <div class="modal-label">Период</div>
+                        <div class="modal-value" id="modal-duration">Даты</div>
+                    </div>
+                    <div>
+                        <div class="modal-label">Наполнение зала</div>
+                        <div class="modal-value" id="modal-pieces">0</div>
+                    </div>
+                </div>
+
+                <div id="modal-tags" class="tag-list"></div>
+
+                <button class="primary-button modal-goto" onclick="goToExhibitionFromModal()">
+                    Перейти к выставке
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

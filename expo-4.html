@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VirtualExpo - Выставка</title>
+    <link rel="icon" href="data:,">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="exhibition.css">
+</head>
+<body data-exhibition-id="4">
+<canvas id="gallery-canvas"></canvas>
+
+<div class="gallery-ui">
+    <header class="gallery-header">
+        <div>
+            <div class="gallery-brand">VIRTUALEXPO</div>
+            <a class="gallery-breadcrumb" href="index.html">← Вернуться в коридор выставок</a>
+        </div>
+        <p id="gallery-hint" class="gallery-header-note"></p>
+    </header>
+
+    <aside class="gallery-sidebar">
+        <div class="gallery-kicker">Выставочный зал</div>
+        <h1 id="gallery-title"></h1>
+        <h2 id="gallery-subtitle"></h2>
+        <p id="gallery-description"></p>
+
+        <div class="gallery-meta">
+            <div class="gallery-meta-card">
+                <span class="gallery-meta-label">Куратор</span>
+                <strong id="gallery-curator"></strong>
+            </div>
+            <div class="gallery-meta-card">
+                <span class="gallery-meta-label">Период</span>
+                <strong id="gallery-duration"></strong>
+            </div>
+            <div class="gallery-meta-card">
+                <span class="gallery-meta-label">Каталог</span>
+                <strong id="gallery-pieces"></strong>
+            </div>
+        </div>
+
+        <div id="gallery-tags" class="gallery-tags"></div>
+        <p id="gallery-note"></p>
+    </aside>
+
+    <section class="gallery-details">
+        <div class="details-header">
+            <div>
+                <div class="gallery-kicker">Выбранный объект</div>
+                <h3 id="details-title" class="details-title"></h3>
+            </div>
+            <div id="details-type" class="details-type"></div>
+        </div>
+
+        <div class="details-preview">
+            <img id="details-preview" src="" alt="">
+        </div>
+
+        <div id="details-author" class="details-author"></div>
+        <div id="details-medium" class="details-copy"></div>
+        <p id="details-description" class="details-copy"></p>
+
+        <div id="media-list" class="media-list"></div>
+    </section>
+
+    <section class="gallery-footer">
+        <div class="gallery-footer-head">
+            <div>
+                <div class="gallery-kicker">Навигация по объектам</div>
+                <p>Можно двигаться по залу естественно или быстро перескакивать к объектам из списка.</p>
+            </div>
+
+            <div class="gallery-actions">
+                <button id="focus-current" class="gallery-action-btn">К текущему объекту</button>
+                <button id="next-object" class="gallery-action-btn primary">Следующий объект</button>
+            </div>
+        </div>
+
+        <div id="object-list" class="object-list"></div>
+    </section>
+
+    <div class="gallery-progress">
+        <span>Прогресс</span>
+        <div class="gallery-progress-track">
+            <div id="gallery-progress-bar" class="gallery-progress-bar"></div>
+        </div>
+    </div>
+
+    <div id="gallery-tooltip" class="gallery-tooltip"></div>
+</div>
+
+<div id="gallery-intro" class="gallery-intro"></div>
+
+<script src="data.js"></script>
+<script src="exhibition.js"></script>
+</body>
+</html>

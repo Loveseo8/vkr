@@ -1,0 +1,7 @@
+[      89ms] TypeError: THREE.CapsuleGeometry is not a constructor
+    at createSculptureMesh (http://127.0.0.1:4173/exhibition.js:348:35)
+    at http://127.0.0.1:4173/exhibition.js:316:31
+    at Array.map (<anonymous>)
+    at buildExhibits (http://127.0.0.1:4173/exhibition.js:262:45)
+    at initGalleryScene (http://127.0.0.1:4173/exhibition.js:171:5)
+    at initExhibition (http://127.0.0.1:4173/exhibition.js:57:5)

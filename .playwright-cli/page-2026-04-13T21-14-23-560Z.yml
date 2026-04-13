@@ -1,0 +1,64 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: VIRTUALEXPO
+        - link "← Вернуться в коридор выставок" [ref=e6] [cursor=pointer]:
+          - /url: index.html
+      - paragraph [ref=e7]: Передвигайтесь по залу, выбирайте объекты курсором и изучайте связанные медиа.
+    - complementary [ref=e8]:
+      - generic [ref=e9]: Выставочный зал
+      - heading "Природа и форма" [level=1] [ref=e10]
+      - heading "Биоморфные объекты и изображения на стыке искусства и экологии" [level=2] [ref=e11]
+      - paragraph [ref=e12]: Выставка соединяет органические структуры, природные циклы и пластические эксперименты в одном виртуальном пространстве.
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - generic [ref=e15]: Куратор
+          - strong [ref=e16]: Александр Морозов
+        - generic [ref=e17]:
+          - generic [ref=e18]: Период
+          - strong [ref=e19]: 10 фев - 20 май 2025
+        - generic [ref=e20]:
+          - generic [ref=e21]: Каталог
+          - strong [ref=e22]: 56 позиций каталога
+      - generic [ref=e23]:
+        - generic [ref=e24]: Биоморфные скульптуры
+        - generic [ref=e25]: Изображения
+        - generic [ref=e26]: Медиаданные
+      - paragraph [ref=e27]: "В зале 4 интерактивных объектов: есть изображения, 3D-формы и медиаданные."
+    - generic [ref=e28]:
+      - generic [ref=e30]:
+        - generic [ref=e31]: Выбранный объект
+        - heading [level=3]
+      - paragraph
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - generic [ref=e37]: Навигация по объектам
+          - paragraph [ref=e38]: Можно двигаться по залу естественно или быстро перескакивать к объектам из списка.
+        - generic [ref=e39]:
+          - button "К текущему объекту" [ref=e40] [cursor=pointer]
+          - button "Следующий объект" [ref=e41] [cursor=pointer]
+      - generic [ref=e42]:
+        - button "Гербарий движения Анна Рябова · Изображение / медиа" [ref=e43] [cursor=pointer]:
+          - generic [ref=e44]: Гербарий движения
+          - generic [ref=e45]: Анна Рябова · Изображение / медиа
+        - button "Кокон света Павел Елагин · 3D-объект" [ref=e46] [cursor=pointer]:
+          - generic [ref=e47]: Кокон света
+          - generic [ref=e48]: Павел Елагин · 3D-объект
+        - button "Пульсация листа Светлана Гранкина · Изображение / медиа" [ref=e49] [cursor=pointer]:
+          - generic [ref=e50]: Пульсация листа
+          - generic [ref=e51]: Светлана Гранкина · Изображение / медиа
+        - button "Семена ветра Максим Пахомов · 3D-объект" [ref=e52] [cursor=pointer]:
+          - generic [ref=e53]: Семена ветра
+          - generic [ref=e54]: Максим Пахомов · 3D-объект
+    - generic [ref=e55]: Прогресс
+  - generic [ref=e58]:
+    - generic [ref=e59]: Внутри выставки
+    - heading "Природа и форма" [level=2] [ref=e60]
+    - paragraph [ref=e61]: Биоморфные объекты и изображения на стыке искусства и экологии
+    - list [ref=e62]:
+      - listitem [ref=e63]: Клик по объекту в 3D-зале открывает подробности справа.
+      - listitem [ref=e64]: Можно использовать список экспонатов внизу для быстрого перехода.
+      - listitem [ref=e65]: Для каждого объекта показаны связанные медиаданные и тип носителя.
+    - button "Открыть зал" [ref=e66] [cursor=pointer]

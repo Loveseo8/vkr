@@ -1,0 +1,39 @@
+- generic [ref=e1]:
+  - generic:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: VIRTUALEXPO
+        - paragraph [ref=e6]: Навигационный коридор виртуальных выставок
+      - generic [ref=e7]: Выберите выставку на стене и откройте ее 3D-зал
+    - complementary [ref=e8]:
+      - generic [ref=e9]: Точка входа
+      - heading "Коридор выставок" [level=1] [ref=e10]
+      - heading "Природа и форма" [level=2] [ref=e45]
+      - paragraph [ref=e12]: Биоморфные объекты и изображения на стыке искусства и экологии
+      - paragraph [ref=e13]: Выставка соединяет органические структуры, природные циклы и пластические эксперименты в одном виртуальном пространстве.
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]: Куратор
+          - strong [ref=e17]: Александр Морозов
+        - generic [ref=e18]:
+          - generic [ref=e19]: Период
+          - strong [ref=e20]: 10 фев - 20 май 2025
+        - generic [ref=e21]:
+          - generic [ref=e22]: Каталог
+          - strong [ref=e23]: 56 работ
+      - generic [ref=e24]:
+        - generic [ref=e46]: Биоморфные скульптуры
+        - generic [ref=e47]: Изображения
+        - generic [ref=e48]: Медиаданные
+      - button "Идти вперед" [ref=e28] [cursor=pointer]
+    - navigation "Список выставок" [ref=e29]:
+      - button "01 Возрождение архаизма" [ref=e30] [cursor=pointer]
+      - button "02 Цифровая революция" [ref=e31] [cursor=pointer]
+      - button "03 Природа и форма" [active] [ref=e32] [cursor=pointer]
+      - button "04 Свет и тень" [ref=e33] [cursor=pointer]
+      - button "05 Город будущего" [ref=e34] [cursor=pointer]
+    - generic:
+      - generic:
+        - paragraph: Колесо мыши / свайп
+        - img
+      - generic: Прогресс

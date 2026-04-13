@@ -1,0 +1,79 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: VIRTUALEXPO
+        - link "← Вернуться в коридор выставок" [ref=e6] [cursor=pointer]:
+          - /url: index.html
+      - paragraph [ref=e7]: Передвигайтесь по залу, выбирайте объекты курсором и изучайте связанные медиа.
+    - complementary [ref=e8]:
+      - generic [ref=e9]: Выставочный зал
+      - heading "Цифровая революция" [level=1] [ref=e10]
+      - heading "Интерактивные панели, алгоритмы и цифровые скульптуры" [level=2] [ref=e11]
+      - paragraph [ref=e12]: Экспозиция показывает, как данные, код и машинные процессы становятся художественным материалом.
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - generic [ref=e15]: Куратор
+          - strong [ref=e16]: Мария Сидорова
+        - generic [ref=e17]:
+          - generic [ref=e18]: Период
+          - strong [ref=e19]: 1 фев - 15 апр 2025
+        - generic [ref=e20]:
+          - generic [ref=e21]: Каталог
+          - strong [ref=e22]: 32 позиций каталога
+      - generic [ref=e23]:
+        - generic [ref=e24]: LED-панели
+        - generic [ref=e25]: Генеративная графика
+        - generic [ref=e26]: Видеоэлементы
+      - paragraph [ref=e27]: "В зале 4 интерактивных объектов: есть изображения, 3D-формы и медиаданные."
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]: Выбранный объект
+          - heading "Сбой сигнала" [level=3] [ref=e32]
+        - generic [ref=e33]: Изображение / медиа
+      - img "Сбой сигнала" [ref=e35]
+      - generic [ref=e36]: Даниил Котов, 2025
+      - generic [ref=e37]: Генеративное видео на LED-панели
+      - paragraph [ref=e38]: "Работа о шуме как художественном языке: изображение постоянно собирается и распадается."
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - generic [ref=e41]: Медианоситель
+          - generic [ref=e42]: Видеоцикл, 4K loop
+        - generic [ref=e43]:
+          - generic [ref=e44]: Звук
+          - generic [ref=e45]: Синтетическая шумовая дорожка
+        - generic [ref=e46]:
+          - generic [ref=e47]: Продолжительность
+          - generic [ref=e48]: 06:40
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - generic [ref=e52]: Навигация по объектам
+          - paragraph [ref=e53]: Можно двигаться по залу естественно или быстро перескакивать к объектам из списка.
+        - generic [ref=e54]:
+          - button "К текущему объекту" [ref=e55] [cursor=pointer]
+          - button "Следующий объект" [ref=e56] [cursor=pointer]
+      - generic [ref=e57]:
+        - button "Сбой сигнала Даниил Котов · Изображение / медиа" [ref=e58] [cursor=pointer]:
+          - generic [ref=e59]: Сбой сигнала
+          - generic [ref=e60]: Даниил Котов · Изображение / медиа
+        - button "Серверный сад Людмила Ракова · 3D-объект" [ref=e61] [cursor=pointer]:
+          - generic [ref=e62]: Серверный сад
+          - generic [ref=e63]: Людмила Ракова · 3D-объект
+        - button "Память облака Никита Юшин · Изображение / медиа" [ref=e64] [cursor=pointer]:
+          - generic [ref=e65]: Память облака
+          - generic [ref=e66]: Никита Юшин · Изображение / медиа
+        - button "Лента событий Екатерина Филатова · Изображение / медиа" [ref=e67] [cursor=pointer]:
+          - generic [ref=e68]: Лента событий
+          - generic [ref=e69]: Екатерина Филатова · Изображение / медиа
+    - generic [ref=e70]: Прогресс
+  - generic [ref=e73]:
+    - generic [ref=e74]: Внутри выставки
+    - heading "Цифровая революция" [level=2] [ref=e75]
+    - paragraph [ref=e76]: Интерактивные панели, алгоритмы и цифровые скульптуры
+    - list [ref=e77]:
+      - listitem [ref=e78]: Клик по объекту в 3D-зале открывает подробности справа.
+      - listitem [ref=e79]: Можно использовать список экспонатов внизу для быстрого перехода.
+      - listitem [ref=e80]: Для каждого объекта показаны связанные медиаданные и тип носителя.
+    - button "Открыть зал" [ref=e81] [cursor=pointer]
