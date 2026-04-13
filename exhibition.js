@@ -12,6 +12,16 @@ let galleryTooltip;
 let galleryProgressBar;
 let galleryDetailsEl;
 let galleryDetailsBackdropEl;
+let detailsPreviewImageEl;
+let detailsPreview3DEl;
+let detailsPreviewCanvasEl;
+let detailsPreviewHintEl;
+let detailsPreviewRenderer;
+let detailsPreviewScene;
+let detailsPreviewCamera;
+let detailsPreviewModelRoot = null;
+let detailsPreviewSurface = null;
+let detailsPreviewState = null;
 let exhibitionData;
 let selectedExhibitId = null;
 let galleryHoverObject = null;
@@ -136,7 +146,11 @@ function mountDetailsModal() {
         <button id="details-close-btn" class="details-close" type="button" aria-label="Закрыть карточку">×</button>
         <div class="gallery-details-grid">
             <div class="gallery-details-visual">
-                <img id="details-preview" src="" alt="">
+                <img id="details-preview-image" class="details-preview-image" src="" alt="">
+                <div id="details-preview-3d" class="details-preview-3d">
+                    <canvas id="details-preview-canvas" class="details-preview-canvas"></canvas>
+                    <div id="details-preview-hint" class="details-preview-hint">Потяните, чтобы вращать. Колесо мыши меняет масштаб.</div>
+                </div>
             </div>
             <div class="gallery-details-copy">
                 <div class="details-header">
@@ -155,12 +169,220 @@ function mountDetailsModal() {
     `;
     galleryDetailsEl.setAttribute('aria-hidden', 'true');
 
+    detailsPreviewImageEl = document.getElementById('details-preview-image');
+    detailsPreview3DEl = document.getElementById('details-preview-3d');
+    detailsPreviewCanvasEl = document.getElementById('details-preview-canvas');
+    detailsPreviewHintEl = document.getElementById('details-preview-hint');
+    initDetailsPreview3D();
+
     galleryDetailsBackdropEl = document.createElement('div');
     galleryDetailsBackdropEl.className = 'gallery-details-backdrop';
     document.querySelector('.gallery-ui').appendChild(galleryDetailsBackdropEl);
 
     galleryDetailsBackdropEl.addEventListener('click', closeGalleryDetails);
     document.getElementById('details-close-btn').addEventListener('click', closeGalleryDetails);
+}
+
+function initDetailsPreview3D() {
+    detailsPreviewRenderer = new THREE.WebGLRenderer({
+        canvas: detailsPreviewCanvasEl,
+        antialias: true,
+        alpha: true
+    });
+    detailsPreviewRenderer.outputColorSpace = THREE.SRGBColorSpace;
+    detailsPreviewRenderer.toneMapping = THREE.ACESFilmicToneMapping;
+    detailsPreviewRenderer.toneMappingExposure = 0.92;
+    detailsPreviewRenderer.setPixelRatio(window.devicePixelRatio);
+
+    detailsPreviewScene = new THREE.Scene();
+
+    detailsPreviewCamera = new THREE.PerspectiveCamera(34, 1, 0.1, 50);
+    detailsPreviewCamera.position.set(0, 0.2, 4.1);
+
+    detailsPreviewScene.add(new THREE.AmbientLight(0xffffff, 0.92));
+
+    const key = new THREE.DirectionalLight(0xfff6ea, 1.05);
+    key.position.set(3.8, 4.6, 5.2);
+    detailsPreviewScene.add(key);
+
+    const rim = new THREE.DirectionalLight(0xb7f5ff, 0.56);
+    rim.position.set(-4.2, 1.6, -3.2);
+    detailsPreviewScene.add(rim);
+
+    const floor = new THREE.Mesh(
+        new THREE.CircleGeometry(1.62, 48),
+        new THREE.MeshStandardMaterial({
+            color: 0x181b22,
+            roughness: 0.92,
+            metalness: 0.03,
+            transparent: true,
+            opacity: 0.72
+        })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -1.12;
+    detailsPreviewScene.add(floor);
+    detailsPreviewSurface = floor;
+
+    detailsPreviewState = {
+        dragging: false,
+        pointerId: null,
+        lastX: 0,
+        lastY: 0,
+        rotationX: 0.22,
+        rotationY: -0.48,
+        targetRotationX: 0.22,
+        targetRotationY: -0.48,
+        distance: 4.1,
+        targetDistance: 4.1
+    };
+
+    detailsPreviewCanvasEl.addEventListener('pointerdown', onDetailsPreviewPointerDown);
+    detailsPreviewCanvasEl.addEventListener('pointermove', onDetailsPreviewPointerMove);
+    detailsPreviewCanvasEl.addEventListener('pointerup', onDetailsPreviewPointerUp);
+    detailsPreviewCanvasEl.addEventListener('pointerleave', onDetailsPreviewPointerUp);
+    detailsPreviewCanvasEl.addEventListener('pointercancel', onDetailsPreviewPointerUp);
+    detailsPreviewCanvasEl.addEventListener('wheel', onDetailsPreviewWheel, { passive: false });
+
+    resizeDetailsPreview();
+}
+
+function onDetailsPreviewPointerDown(event) {
+    if (!galleryDetailsVisible || !detailsPreviewModelRoot) {
+        return;
+    }
+
+    detailsPreviewState.dragging = true;
+    detailsPreviewState.pointerId = event.pointerId;
+    detailsPreviewState.lastX = event.clientX;
+    detailsPreviewState.lastY = event.clientY;
+    detailsPreview3DEl.classList.add('dragging');
+    detailsPreviewCanvasEl.setPointerCapture(event.pointerId);
+}
+
+function onDetailsPreviewPointerMove(event) {
+    if (!detailsPreviewState.dragging || detailsPreviewState.pointerId !== event.pointerId) {
+        return;
+    }
+
+    const deltaX = event.clientX - detailsPreviewState.lastX;
+    const deltaY = event.clientY - detailsPreviewState.lastY;
+    detailsPreviewState.lastX = event.clientX;
+    detailsPreviewState.lastY = event.clientY;
+
+    detailsPreviewState.targetRotationY += deltaX * 0.012;
+    detailsPreviewState.targetRotationX = galleryClamp(
+        detailsPreviewState.targetRotationX + deltaY * 0.01,
+        -0.85,
+        0.85
+    );
+}
+
+function onDetailsPreviewPointerUp(event) {
+    if (detailsPreviewState.pointerId != null && detailsPreviewState.pointerId !== event.pointerId) {
+        return;
+    }
+
+    detailsPreviewState.dragging = false;
+    detailsPreviewState.pointerId = null;
+    detailsPreview3DEl.classList.remove('dragging');
+    if (event.pointerId != null && detailsPreviewCanvasEl.hasPointerCapture(event.pointerId)) {
+        detailsPreviewCanvasEl.releasePointerCapture(event.pointerId);
+    }
+}
+
+function onDetailsPreviewWheel(event) {
+    if (!galleryDetailsVisible || !detailsPreviewModelRoot) {
+        return;
+    }
+
+    event.preventDefault();
+    detailsPreviewState.targetDistance = galleryClamp(
+        detailsPreviewState.targetDistance + event.deltaY * 0.0045,
+        2.2,
+        6.4
+    );
+}
+
+function resizeDetailsPreview() {
+    if (!detailsPreviewRenderer || !detailsPreview3DEl) {
+        return;
+    }
+
+    const bounds = detailsPreview3DEl.getBoundingClientRect();
+    const width = Math.max(1, Math.floor(bounds.width));
+    const height = Math.max(1, Math.floor(bounds.height));
+    detailsPreviewCamera.aspect = width / height;
+    detailsPreviewCamera.updateProjectionMatrix();
+    detailsPreviewRenderer.setSize(width, height, false);
+}
+
+function clearDetailsPreviewModel() {
+    if (!detailsPreviewModelRoot) {
+        return;
+    }
+
+    detailsPreviewScene.remove(detailsPreviewModelRoot);
+    detailsPreviewModelRoot.traverse((child) => {
+        if (!child.isMesh) {
+            return;
+        }
+
+        child.geometry?.dispose?.();
+        const childMaterials = Array.isArray(child.material) ? child.material : [child.material];
+        childMaterials.forEach((material) => material?.dispose?.());
+    });
+    detailsPreviewModelRoot = null;
+}
+
+function mountDetailsPreviewModel(exhibit) {
+    clearDetailsPreviewModel();
+
+    const previewRoot = new THREE.Group();
+    const previewModel = createSculptureMesh(exhibit.shape);
+    previewRoot.add(previewModel);
+
+    const box = new THREE.Box3().setFromObject(previewRoot);
+    const center = new THREE.Vector3();
+    const size = new THREE.Vector3();
+    box.getCenter(center);
+    box.getSize(size);
+
+    previewModel.position.sub(center);
+
+    const maxSide = Math.max(size.x, size.y, size.z) || 1;
+    const scale = 2.2 / maxSide;
+    previewModel.scale.setScalar(scale);
+
+    const fittedBox = new THREE.Box3().setFromObject(previewRoot);
+    const fittedCenter = new THREE.Vector3();
+    fittedBox.getCenter(fittedCenter);
+    previewModel.position.sub(fittedCenter);
+    previewModel.position.y -= fittedBox.min.y + 0.26;
+
+    detailsPreviewModelRoot = previewRoot;
+    detailsPreviewScene.add(previewRoot);
+    detailsPreviewState.rotationX = 0.22;
+    detailsPreviewState.rotationY = -0.48;
+    detailsPreviewState.targetRotationX = 0.22;
+    detailsPreviewState.targetRotationY = -0.48;
+    detailsPreviewState.distance = 4.1;
+    detailsPreviewState.targetDistance = 4.1;
+}
+
+function setDetailsPreviewMode(exhibit) {
+    const isSculpture = exhibit.kind === 'sculpture';
+
+    detailsPreviewImageEl.classList.toggle('active', !isSculpture);
+    detailsPreview3DEl.classList.toggle('active', isSculpture);
+
+    if (isSculpture) {
+        detailsPreviewHintEl.textContent = 'Потяните, чтобы вращать. Колесо мыши меняет масштаб.';
+        mountDetailsPreviewModel(exhibit);
+        resizeDetailsPreview();
+    } else {
+        clearDetailsPreviewModel();
+    }
 }
 
 function mountIntro() {
@@ -173,7 +395,7 @@ function mountIntro() {
             <ul>
                 <li>Наведите курсор на экспонат, чтобы увидеть отклик, и кликните, чтобы открыть его карточку.</li>
                 <li>Можно использовать список экспонатов внизу для быстрого перехода по залу.</li>
-                <li>Карточка открывается поверх зала и показывает изображение, описание и медиаданные выбранной работы.</li>
+                <li>Для 3D-объектов в карточке можно вращать модель и приближать её колесом мыши.</li>
             </ul>
             <button id="gallery-intro-btn" class="gallery-intro-btn">Открыть зал</button>
         </div>
@@ -539,6 +761,7 @@ function onGalleryResize() {
     galleryCamera.aspect = window.innerWidth / window.innerHeight;
     galleryCamera.updateProjectionMatrix();
     galleryRenderer.setSize(window.innerWidth, window.innerHeight);
+    resizeDetailsPreview();
 }
 
 function onGalleryScroll(event) {
@@ -670,6 +893,7 @@ function openGalleryDetails(exhibit) {
     galleryDetailsBackdropEl.classList.add('active');
     galleryDetailsEl.setAttribute('aria-hidden', 'false');
     hideGalleryTooltip();
+    resizeDetailsPreview();
 }
 
 function closeGalleryDetails() {
@@ -681,13 +905,15 @@ function closeGalleryDetails() {
     galleryDetailsEl.classList.remove('active');
     galleryDetailsBackdropEl.classList.remove('active');
     galleryDetailsEl.setAttribute('aria-hidden', 'true');
+    detailsPreview3DEl.classList.remove('dragging');
 }
 
 function updateDetails(exhibit) {
     document.getElementById('details-title').textContent = exhibit.title;
     document.getElementById('details-type').textContent = exhibit.kind === 'sculpture' ? '3D-объект' : 'Изображение / медиа';
-    document.getElementById('details-preview').src = exhibit.media.preview;
-    document.getElementById('details-preview').alt = exhibit.title;
+    detailsPreviewImageEl.src = exhibit.media.preview;
+    detailsPreviewImageEl.alt = exhibit.title;
+    setDetailsPreviewMode(exhibit);
     document.getElementById('details-author').textContent = `${exhibit.author}, ${exhibit.year}`;
     document.getElementById('details-medium').textContent = exhibit.medium;
     document.getElementById('details-description').textContent = exhibit.description;
@@ -719,6 +945,43 @@ function getGalleryMaxZ() {
 
 function updateGalleryProgress() {
     galleryProgressBar.style.width = `${(galleryScrollProgress * 100).toFixed(0)}%`;
+}
+
+function renderDetailsPreviewFrame() {
+    if (!galleryDetailsVisible || !detailsPreviewRenderer || !detailsPreviewModelRoot) {
+        return;
+    }
+
+    if (!detailsPreviewState.dragging) {
+        detailsPreviewState.targetRotationY += 0.0035;
+    }
+
+    detailsPreviewState.rotationX = THREE.MathUtils.lerp(
+        detailsPreviewState.rotationX,
+        detailsPreviewState.targetRotationX,
+        0.12
+    );
+    detailsPreviewState.rotationY = THREE.MathUtils.lerp(
+        detailsPreviewState.rotationY,
+        detailsPreviewState.targetRotationY,
+        0.12
+    );
+    detailsPreviewState.distance = THREE.MathUtils.lerp(
+        detailsPreviewState.distance,
+        detailsPreviewState.targetDistance,
+        0.14
+    );
+
+    detailsPreviewModelRoot.rotation.x = detailsPreviewState.rotationX;
+    detailsPreviewModelRoot.rotation.y = detailsPreviewState.rotationY;
+    detailsPreviewCamera.position.set(0, 0.25, detailsPreviewState.distance);
+    detailsPreviewCamera.lookAt(0, 0.12, 0);
+
+    if (detailsPreviewSurface) {
+        detailsPreviewSurface.scale.setScalar(THREE.MathUtils.clamp(detailsPreviewState.distance / 3.3, 0.92, 1.35));
+    }
+
+    detailsPreviewRenderer.render(detailsPreviewScene, detailsPreviewCamera);
 }
 
 function animateGallery() {
@@ -769,6 +1032,7 @@ function animateGallery() {
 
     autoSelectNearestExhibit();
     updateGalleryProgress();
+    renderDetailsPreviewFrame();
     galleryRenderer.render(galleryScene, galleryCamera);
 }
 

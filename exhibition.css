@@ -215,6 +215,7 @@ canvas {
 }
 
 .gallery-details-visual {
+    position: relative;
     border-radius: 24px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.04);
@@ -226,6 +227,7 @@ canvas {
     justify-content: space-between;
     gap: 16px;
     align-items: flex-start;
+    padding-right: 72px;
 }
 
 .gallery-details-copy {
@@ -251,12 +253,57 @@ canvas {
     white-space: nowrap;
 }
 
-.gallery-details-visual img {
+.details-preview-image,
+.details-preview-3d {
+    display: none;
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+}
+
+.details-preview-image.active,
+.details-preview-3d.active {
+    display: block;
+}
+
+.details-preview-image {
+    object-fit: cover;
+}
+
+.details-preview-3d {
+    position: relative;
+    background:
+        radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.16), transparent 30%),
+        radial-gradient(circle at 50% 72%, rgba(95, 211, 188, 0.08), transparent 34%),
+        linear-gradient(180deg, rgba(22, 24, 32, 0.92), rgba(10, 12, 18, 0.98));
+    cursor: grab;
+    touch-action: none;
+}
+
+.details-preview-3d.dragging {
+    cursor: grabbing;
+}
+
+.details-preview-canvas {
     display: block;
     width: 100%;
     height: 100%;
     min-height: 420px;
-    object-fit: cover;
+}
+
+.details-preview-hint {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(8, 10, 16, 0.76);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    backdrop-filter: blur(8px);
 }
 
 .details-copy {
@@ -311,6 +358,7 @@ canvas {
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
+    z-index: 2;
 }
 
 .gallery-footer {
@@ -594,8 +642,21 @@ canvas {
         min-height: 260px;
     }
 
+    .details-preview-image,
+    .details-preview-3d,
     .gallery-details-visual img {
         min-height: 260px;
+    }
+
+    .details-preview-canvas {
+        min-height: 260px;
+    }
+
+    .details-preview-hint {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        font-size: 0.76rem;
     }
 
     .gallery-footer {
